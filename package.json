@@ -1,0 +1,23 @@
+{
+  "name": "exam-evaluator",
+  "version": "1.0.0",
+  "description": "Exam evaluator for lazy teachers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "web-dev-server --node-resolve --open --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pfbarranco/exam-evaluator.git"
+  },
+  "author": "Paula Fe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pfbarranco/exam-evaluator/issues"
+  },
+  "homepage": "https://github.com/pfbarranco/exam-evaluator#readme",
+  "dependencies": {
+    "@web/dev-server": "^0.1.32"
+  }
+}
