@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova&family=Mochiy+Pop+One&display=swap"
         rel="stylesheet">
-    <link href="style.css" type="text/css" rel="stylesheet" media="">
+    <link href="dist/styles/style.css" type="text/css" rel="stylesheet" media="">
 </head>
 
 <body>
@@ -22,15 +22,15 @@
 
     </header>
 
-    <section>
-        <aside id="izq">
-            <h1>Number of students</h1>
-            <form>
-                <input type="number" placeholder="Nº students">
-                <input type="submit" value="Ok">
-            </form>
-        </aside>
-    </section>
+    <form class="row g-2">
+        
+        <div class="col-auto">
+          <input type="number" class="form-control" placeholder="Nº students">
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-3">OK</button>
+        </div>
+      </form>
 
     <script src="script.js"></script>
 
