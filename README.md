@@ -11,26 +11,26 @@ Student evaluator for lazy teachers.
 
 
 1. Clone the project:
-~~~
+```bash
 git clone https://github.com/pfbarranco/student-evaluator.git
-~~~
+```
 
 2. Install dependencies:
-~~~
+```bash
 npm install
-~~~
+```
 
 3. Compile Sass:
-~~~
+```bash
 sass src/styles:dist/styles
-~~~
+```
 
 ## Run locally
 
 Start a new server in localhost (by default port is 8000):
-~~~
+```bash
 npm start
-~~~
+```
 
 ## Running tests
 
