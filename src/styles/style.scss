@@ -1,0 +1,30 @@
+@import "../../node_modules/bootstrap/scss/functions";
+
+$primary: #ADEFD1FF;
+$secondary: #00203FFF;
+
+* {
+    list-style: none;
+    font-family: 'Ibarra Real Nova', serif;
+    background-color: $secondary;
+}
+
+body {
+    margin: 5px!important;
+}
+
+.row.g-2 {
+    padding: 20px;
+}
+
+header {
+    position: relative;
+    padding: 20px;
+    color: $primary;
+}
+
+#name {
+    font-family: 'Mochiy Pop One', sans-serif;
+}
+
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';

@@ -1,20 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Student evaluator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova&family=Mochiy+Pop+One&display=swap"
+        rel="stylesheet">
+    <link href="dist/styles/style.css" type="text/css" rel="stylesheet" media="">
 </head>
+
 <body>
 
     <header>
 
-        <h1>Hello World!</h1>
+        <h1 id="name">Student evaluator</h1>
+        <h3>If you don't have enough time to evaluate your students, try this!</h3>
 
     </header>
 
+    <form class="row g-2">
+        
+        <div class="col-auto">
+          <input type="number" class="form-control" placeholder="Nº students">
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-3">OK</button>
+        </div>
+      </form>
+
     <script src="script.js"></script>
-    
+
 </body>
+
 </html>

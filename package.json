@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/pfbarranco/exam-evaluator#readme",
   "dependencies": {
-    "@web/dev-server": "^0.1.32"
+    "@web/dev-server": "^0.1.32",
+    "bootstrap": "^5.2.0"
   }
 }
