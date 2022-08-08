@@ -21,24 +21,30 @@ numberOfStudentsInput.addEventListener("input", function () {
 
 let buttonOk = document.getElementById("studentsButton");
 
+let table = document.getElementById("myTable");
+
 buttonOk.addEventListener("click", function () {
-    for (let i = 1; i <= numberOfStudentsInput.value; i++) {
-        myFunction();
-    }
+   clearAndCompleteTable ();
 })
 
 let numberOfStudentsForm = document.getElementById("numberOfStudentsForm");
 
 numberOfStudentsForm.addEventListener("keypress", function () {
     if (event.key === "Enter") {
-        for (let i = 1; i <= numberOfStudentsInput.value; i++) {
-            myFunction();
-        }
+        clearAndCompleteTable ();
     }
 })
 
-function myFunction() {
-    let table = document.getElementById("myTable");
+function clearAndCompleteTable () {
+    for(let i = 1;i<table.rows.length;){
+        table.deleteRow(i);
+    }
+    for (let i = 1; i <= numberOfStudentsInput.value; i++) {
+        addRowToStudentsTable();
+    }
+}
+
+function addRowToStudentsTable() {
     let row = table.insertRow(1);
     let cell1 = row.insertCell(0);
     let cell2 = row.insertCell(1);
@@ -46,11 +52,11 @@ function myFunction() {
     let cell4 = row.insertCell(3);
     let cell5 = row.insertCell(4);
 
-    cell1.innerHTML = "NEW CELL1";
-    cell2.innerHTML = "NEW CELL2";
-    cell3.innerHTML = "NEW CELL3";
-    cell4.innerHTML = "NEW CELL4";
-    cell5.innerHTML = "NEW CELL5";
+    cell1.innerHTML = "";
+    cell2.innerHTML = "Elvis Presley";
+    cell3.innerHTML = "";
+    cell4.innerHTML = "";
+    cell5.innerHTML = "";
 }
 
 
