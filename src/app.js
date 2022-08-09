@@ -6,16 +6,12 @@ numberOfStudentsInput.addEventListener("input", function () {
 
 
     if (numberOfStudentsInput.value <= 30 && numberOfStudentsInput.value >= 1) {
-
         studentsButton.disabled = false;
         numberOfStudentsInput.setCustomValidity("");
-
     } else {
-
         studentsButton.disabled = true;
         numberOfStudentsInput.setCustomValidity("Number must be between 1 and 30.");
         numberOfStudentsInput.reportValidity();
-
     }
 })
 
@@ -24,19 +20,19 @@ let buttonOk = document.getElementById("studentsButton");
 let table = document.getElementById("myTable");
 
 buttonOk.addEventListener("click", function () {
-   clearAndCompleteTable ();
+    clearAndCompleteTable();
 })
 
 let numberOfStudentsForm = document.getElementById("numberOfStudentsForm");
 
 numberOfStudentsForm.addEventListener("keypress", function () {
     if (event.key === "Enter") {
-        clearAndCompleteTable ();
+        clearAndCompleteTable();
     }
 })
 
-function clearAndCompleteTable () {
-    for(let i = 1;i<table.rows.length;){
+function clearAndCompleteTable() {
+    for (let i = 1; i < table.rows.length;) {
         table.deleteRow(i);
     }
     for (let i = 1; i <= numberOfStudentsInput.value; i++) {
