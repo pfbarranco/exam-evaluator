@@ -4,6 +4,7 @@ const chai = require('chai');
 const { JSDOM } = require('jsdom');
 chai.use(require('chai-dom'));
 require('jsdom-global')();
+import EventEmitter from "events";
 
 describe('index.html', () => {
     beforeEach((done) => {
@@ -14,19 +15,36 @@ describe('index.html', () => {
             .then(done, done);
     })
 
+    afterEach(() => {
+        delete require.cache[require.resolve('../src/app')];
+    });
+
     describe("Ok button tests", () => {
         it("Ok button is disabled by default", () => {
             let app = require("../src/app");
-            let element = document.getElementById('studentsButton')
-            assert.isTrue(element.disabled)
+            let studentsOkButton = document.getElementById('studentsButton')
+            assert.isTrue(studentsOkButton.disabled)
         });
-    })
 
-    describe("Ok button tests2", () => {
         it("Ok button is enabled when entering a correct number", () => {
-            var app = require("../src/app");
-            let element = document.getElementById('studentsButton')
-            assert.isTrue(element.disabled)
+            let app = require("../src/app")
+            let numberOfStudentsInput = document.getElementById("numberOfStudentsInput")
+            numberOfStudentsInput.value = '5';
+
+            // var event = numberOfStudentsInput.dispatchEvent(new Event('input'))
+            var event = new Event('input', {
+                'bubbles': true,
+                'cancelable': true
+            });
+
+            numberOfStudentsInput.dispatchEvent(event);
+
+            // assert.isTrue(event)
+
+            let studentsButton = document.getElementById('studentsButton');
+            assert.isFalse(studentsButton.disabled)
         });
+
+
     })
 })
