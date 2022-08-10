@@ -4,7 +4,6 @@ const chai = require('chai');
 const { JSDOM } = require('jsdom');
 chai.use(require('chai-dom'));
 require('jsdom-global')();
-import EventEmitter from "events";
 
 describe('index.html', () => {
     beforeEach((done) => {
