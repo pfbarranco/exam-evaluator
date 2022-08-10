@@ -30,15 +30,9 @@ describe('index.html', () => {
             let numberOfStudentsInput = document.getElementById("numberOfStudentsInput")
             numberOfStudentsInput.value = '5';
 
-            // var event = numberOfStudentsInput.dispatchEvent(new Event('input'))
-            var event = new Event('input', {
-                'bubbles': true,
-                'cancelable': true
-            });
+            var eventDispatched = numberOfStudentsInput.dispatchEvent(new Event('input'))
 
-            numberOfStudentsInput.dispatchEvent(event);
-
-            // assert.isTrue(event)
+            assert.isTrue(eventDispatched)
 
             let studentsButton = document.getElementById('studentsButton');
             assert.isFalse(studentsButton.disabled)

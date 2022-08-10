@@ -8,10 +8,10 @@ numberOfStudentsInput.addEventListener("input", function () {
 
 
     if (numberOfStudentsInput.value <= 30 && numberOfStudentsInput.value >= 1) {
-        studentsButton.disabled = false;
+        buttonOk.disabled = false;
         numberOfStudentsInput.setCustomValidity("");
     } else {
-        studentsButton.disabled = true;
+        buttonOk.disabled = true;
         numberOfStudentsInput.setCustomValidity("Number must be between 1 and 30.");
         numberOfStudentsInput.reportValidity();
     }
