@@ -1,4 +1,6 @@
-document.getElementById("studentsButton").disabled = true;
+let buttonOk = document.getElementById("studentsButton");
+
+buttonOk.disabled = true;
 
 let numberOfStudentsInput = document.getElementById("numberOfStudentsInput");
 
@@ -15,9 +17,7 @@ numberOfStudentsInput.addEventListener("input", function () {
     }
 })
 
-let buttonOk = document.getElementById("studentsButton");
-
-let table = document.getElementById("myTable");
+let table = document.getElementById("studentsTable");
 
 buttonOk.addEventListener("click", function () {
     clearAndCompleteTable();
