@@ -76,9 +76,45 @@ describe('Main page test', () => {
 
     describe("Students table tests", () => {
 
-        //TODO: There's only 1 row by default
-        //TODO: Check that table add the same number of rows as numberOfStudentsInput.value
-        //TODO: Enter 5 and check that number of rows is 6. Enter 10 and check that number of rows is 11.
+        it("Only 1 row by default", () => {
+            let app = require("../src/app")
+            let studentsTable = document.getElementById("studentsTable")
+
+            assert.equal(studentsTable.rows.length, 1)
+        })
+
+        it("Number input + 1 (header) is equal to number of rows", () => {
+            let app = require("../src/app")
+            let studentsTable = document.getElementById("studentsTable")
+            let numberOfStudentsInput = document.getElementById("numberOfStudentsInput")
+            numberOfStudentsInput.value = 3
+            var eventDispatched = numberOfStudentsInput.dispatchEvent(new Event('input'))
+            assert.isTrue(eventDispatched)
+            let studentsButton = document.getElementById('studentsButton');
+            studentsButton.click()
+
+            assert.equal(studentsTable.rows.length, Number.parseInt(numberOfStudentsInput.value) + 1)
+        })
+
+        it.only("Check if the table cleans when entering a new number after another one ", () => {
+            let app = require("../src/app")
+            let studentsTable = document.getElementById("studentsTable")
+            let numberOfStudentsInput = document.getElementById("numberOfStudentsInput")
+            numberOfStudentsInput.value = 5
+            var eventDispatched = numberOfStudentsInput.dispatchEvent(new Event('input'))
+            assert.isTrue(eventDispatched)
+            let studentsButton = document.getElementById('studentsButton');
+            studentsButton.click()
+
+            assert.equal(studentsTable.rows.length, Number.parseInt(numberOfStudentsInput.value) + 1)
+
+            numberOfStudentsInput.value = 10
+            var eventDispatched = numberOfStudentsInput.dispatchEvent(new Event('input'))
+            assert.isTrue(eventDispatched)
+            studentsButton.click()
+
+            assert.equal(studentsTable.rows.length, Number.parseInt(numberOfStudentsInput.value) + 1)
+        })
 
     })
 })
