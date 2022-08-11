@@ -10,7 +10,7 @@ $secondary: #00203FFF;
 }
 
 body {
-    margin: 5px!important;
+    margin: 5px !important;
 }
 
 .row.g-2 {
@@ -27,4 +27,27 @@ header {
     font-family: 'Mochiy Pop One', sans-serif;
 }
 
+.table {
+    color: $primary !important;
+    background-color: $secondary;
+    border-color: $primary !important;
+}
+
+th {
+    border-width: 3px!important;
+    padding-bottom: 5px !important;
+    padding-left: 30px !important;
+}
+
+td {
+    padding-bottom: 5px !important;
+    padding-left: 30px !important;
+    border-width: 1px!important;
+}
+
+tr {
+    padding-bottom: 5px !important;
+    padding-left: 30px !important;
+    border-width: 1px!important;
+}
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';
