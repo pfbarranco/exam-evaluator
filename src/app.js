@@ -4,8 +4,16 @@ buttonOk.disabled = true;
 
 let numberOfStudentsInput = document.getElementById("numberOfStudentsInput");
 
+let evaluateButton1 = document.getElementById("evaluateButton1");
+let evaluateButton2 = document.getElementById("evaluateButton2");
+
+evaluateButton1.disabled = true;
+evaluateButton2.disabled = true;
+
 numberOfStudentsInput.addEventListener("input", function () {
 
+    evaluateButton1.disabled = true;
+    evaluateButton2.disabled = true;
 
     if (numberOfStudentsInput.value <= 30 && numberOfStudentsInput.value >= 1) {
         buttonOk.disabled = false;
@@ -17,10 +25,12 @@ numberOfStudentsInput.addEventListener("input", function () {
     }
 })
 
-let table = document.getElementById("studentsTable");
+    let table = document.getElementById("studentsTable");
 
 buttonOk.addEventListener("click", function () {
     clearAndCompleteTable();
+    evaluateButton1.disabled = false;
+    evaluateButton2.disabled = false;
 })
 
 let numberOfStudentsForm = document.getElementById("numberOfStudentsForm");
@@ -28,8 +38,10 @@ let numberOfStudentsForm = document.getElementById("numberOfStudentsForm");
 numberOfStudentsForm.addEventListener("keypress", function () {
     if (event.key === "Enter") {
         clearAndCompleteTable();
+        evaluateButton1.disabled = false;
+        evaluateButton2.disabled = false;
     }
-})
+    })
 
 function clearAndCompleteTable() {
     for (let i = 1; i < table.rows.length;) {
