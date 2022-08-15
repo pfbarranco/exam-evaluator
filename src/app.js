@@ -44,15 +44,20 @@ function printScore() {
         let score = getRandomIntInclusive(0, 100);
         let tr = table.rows[i + 1];
         let cell = tr.cells[2];
-        cell.innerHTML = score;
+
+        if (score <= 49) {
+            cell.innerHTML = score + " <img src='src/img/red_cross.png' width='25'>";
+        } else {
+          cell.innerHTML = score + " <img src='src/img/check.png' width='25'>";  
+        }
     }
 }
 
-evaluateButton1.addEventListener ("click", function () {
-    printScore ();
+evaluateButton1.addEventListener("click", function () {
+    printScore();
 })
-evaluateButton2.addEventListener ("click", function () {
-    printScore ();
+evaluateButton2.addEventListener("click", function () {
+    printScore();
 })
 
 let numberOfStudentsForm = document.getElementById("numberOfStudentsForm");
