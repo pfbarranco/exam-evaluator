@@ -51,4 +51,11 @@ tr {
     padding-left: 30px !important;
     border-width: 1px!important;
 }
+
+#evaluateButton2 {
+    margin-top: 10px;
+    position: absolute;
+    right: 40px;
+}
+
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';

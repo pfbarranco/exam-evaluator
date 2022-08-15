@@ -25,12 +25,34 @@ numberOfStudentsInput.addEventListener("input", function () {
     }
 })
 
-    let table = document.getElementById("studentsTable");
+let table = document.getElementById("studentsTable");
 
 buttonOk.addEventListener("click", function () {
     clearAndCompleteTable();
     evaluateButton1.disabled = false;
     evaluateButton2.disabled = false;
+})
+
+function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+function printScore() {
+    for (i = 0; i < numberOfStudentsInput.value; i++) {
+        //Asignar un número entre 0 y 100 de forma aleatoria por cada alumno en la columna Score.
+        let score = getRandomIntInclusive(0, 100);
+        let tr = table.rows[i + 1];
+        let cell = tr.cells[2];
+        cell.innerHTML = score;
+    }
+}
+
+evaluateButton1.addEventListener ("click", function () {
+    printScore ();
+})
+evaluateButton2.addEventListener ("click", function () {
+    printScore ();
 })
 
 let numberOfStudentsForm = document.getElementById("numberOfStudentsForm");
@@ -41,7 +63,7 @@ numberOfStudentsForm.addEventListener("keypress", function () {
         evaluateButton1.disabled = false;
         evaluateButton2.disabled = false;
     }
-    })
+})
 
 function clearAndCompleteTable() {
     for (let i = 1; i < table.rows.length;) {
@@ -64,5 +86,4 @@ function addRowToStudentsTable(i) {
     cell3.innerHTML = "";
     cell4.innerHTML = "";
 }
-
 
