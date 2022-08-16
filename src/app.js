@@ -1,14 +1,57 @@
+/* OK BUTTON
+OK button is disabled by default */
+
 let buttonOk = document.getElementById("studentsButton");
 
 buttonOk.disabled = true;
 
-let numberOfStudentsInput = document.getElementById("numberOfStudentsInput");
+/* OK button cleans table after clicking before printing scores with a new number */
+
+buttonOk.addEventListener("click", function () {
+    clearAndCompleteTable();
+    evaluateButton1.disabled = false;
+    evaluateButton2.disabled = false;
+})
+
+/* Number of students form.
+Enter key does the same functions as click on OK button */
+
+let numberOfStudentsForm = document.getElementById("numberOfStudentsForm");
+
+numberOfStudentsForm.addEventListener("keypress", function () {
+    if (event.key === "Enter" && numberOfStudentsInput.value <= 30 && numberOfStudentsInput.value >= 1) {
+        clearAndCompleteTable();
+        evaluateButton1.disabled = false;
+        evaluateButton2.disabled = false;
+    }
+})
+
+/* Evaluate button */
 
 let evaluateButton1 = document.getElementById("evaluateButton1");
 let evaluateButton2 = document.getElementById("evaluateButton2");
 
+/* Evaluate button is disabled by default */
+
 evaluateButton1.disabled = true;
 evaluateButton2.disabled = true;
+
+/* When clicking on evaluate buttons scores and proper images are printed */
+
+evaluateButton1.addEventListener("click", function () {
+    printScore();
+})
+evaluateButton2.addEventListener("click", function () {
+    printScore();
+})
+
+/*Number of students input */
+
+let numberOfStudentsInput = document.getElementById("numberOfStudentsInput");
+
+/* Entering a number (1-30) enables the OK button.
+A different number keeps the OK button disabled.
+If the number is wrong an error message is dispalyed. */
 
 numberOfStudentsInput.addEventListener("input", function () {
 
@@ -25,13 +68,11 @@ numberOfStudentsInput.addEventListener("input", function () {
     }
 })
 
+/* Table*/
+
 let table = document.getElementById("studentsTable");
 
-buttonOk.addEventListener("click", function () {
-    clearAndCompleteTable();
-    evaluateButton1.disabled = false;
-    evaluateButton2.disabled = false;
-})
+/* Add random scores (0-100) after clicking on Evaluate buttons in proper column and with proper image */
 
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
@@ -40,35 +81,19 @@ function getRandomIntInclusive(min, max) {
 }
 function printScore() {
     for (i = 0; i < numberOfStudentsInput.value; i++) {
-        //Asignar un número entre 0 y 100 de forma aleatoria por cada alumno en la columna Score.
         let score = getRandomIntInclusive(0, 100);
-        let tr = table.rows[i + 1];
-        let cell = tr.cells[2];
+        let tr = table.rows[i + 1]; // Second row
+        let cell = tr.cells[2]; // Third column
 
         if (score <= 49) {
             cell.innerHTML = score + " <img src='src/img/red_cross.png' width='25'>";
         } else {
-          cell.innerHTML = score + " <img src='src/img/check.png' width='25'>";  
+            cell.innerHTML = score + " <img src='src/img/check.png' width='25'>";
         }
     }
 }
 
-evaluateButton1.addEventListener("click", function () {
-    printScore();
-})
-evaluateButton2.addEventListener("click", function () {
-    printScore();
-})
-
-let numberOfStudentsForm = document.getElementById("numberOfStudentsForm");
-
-numberOfStudentsForm.addEventListener("keypress", function () {
-    if (event.key === "Enter") {
-        clearAndCompleteTable();
-        evaluateButton1.disabled = false;
-        evaluateButton2.disabled = false;
-    }
-})
+/* Clear table and add new rows depending on the input number */
 
 function clearAndCompleteTable() {
     for (let i = 1; i < table.rows.length;) {
@@ -79,6 +104,8 @@ function clearAndCompleteTable() {
     }
 }
 
+/* Add rows to students table depending on the input number */
+
 function addRowToStudentsTable(i) {
     let row = table.insertRow(i);
     let cell1 = row.insertCell(0);
@@ -86,9 +113,8 @@ function addRowToStudentsTable(i) {
     let cell3 = row.insertCell(2);
     let cell4 = row.insertCell(3);
 
-    cell1.innerHTML = i;
+    cell1.innerHTML = i; // Number
     cell2.innerHTML = "Elvis Presley";
     cell3.innerHTML = "";
     cell4.innerHTML = "";
 }
-
