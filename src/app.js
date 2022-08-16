@@ -90,6 +90,7 @@ function printScore() {
         } else {
             cell.innerHTML = score + " <img src='src/img/green_check.png' width='25'>";
         }
+        // update student score
     }
 }
 
@@ -110,9 +111,24 @@ function addRowToStudentsTable(i) {
     let row = table.insertRow(i);
     let cell1 = row.insertCell(0);
     let cell2 = row.insertCell(1);
-    let cell3 = row.insertCell(2);
-    let cell4 = row.insertCell(3);
+    row.insertCell(2);
+    row.insertCell(3);
 
     cell1.innerHTML = i; // Number
     cell2.innerHTML = "Elvis Presley";
+    let student = new Student(i, "Elvis Presley");
+    students.push (student);
 }
+
+/* Send button*/
+/* Disable and enable send button */
+
+class Student {
+    constructor (id, name){
+        this.id=id;
+        this.name=name;
+    }
+    //score;
+}
+
+let students = [];
