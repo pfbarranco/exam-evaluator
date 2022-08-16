@@ -96,7 +96,7 @@ describe('Main page test', () => {
             assert.equal(studentsTable.rows.length, Number.parseInt(numberOfStudentsInput.value) + 1)
         })
 
-        it.only("Check if the table cleans when entering a new number after another one ", () => {
+        it("Check if the table cleans when entering a new number after another one ", () => {
             let app = require("../src/app")
             let studentsTable = document.getElementById("studentsTable")
             let numberOfStudentsInput = document.getElementById("numberOfStudentsInput")
@@ -117,4 +117,39 @@ describe('Main page test', () => {
         })
 
     })
+
+    describe("Evaluate button tests", () => {
+        it("Evaluate button 1 is disabled by default", () => {
+            let app = require("../src/app");
+            let evaluateButton1 = document.getElementById('evaluateButton1')
+            assert.isTrue(evaluateButton1.disabled)
+        });
+        it("Evaluate button 2 is disabled by default", () => {
+            let app = require("../src/app");
+            let evaluateButton2 = document.getElementById('evaluateButton2')
+            assert.isTrue(evaluateButton2.disabled)
+        });
+        it("Evaluate button 1 is enable after clicking on OK", () => {
+            let app = require("../src/app");
+            let studentsOkButton = document.getElementById('studentsButton');
+
+            var eventDispatched = studentsOkButton.dispatchEvent(new Event('click'))
+            assert.isTrue(eventDispatched);
+
+            let evaluateButton1 = document.getElementById('evaluateButton1');
+            assert.isFalse(evaluateButton1.disabled)
+        });
+        it("Evaluate button 2 is enable after clicking on OK", () => {
+            let app = require("../src/app");
+            let studentsOkButton = document.getElementById('studentsButton');
+
+            var eventDispatched = studentsOkButton.dispatchEvent(new Event('click'))
+            assert.isTrue(eventDispatched);
+
+            let evaluateButton2 = document.getElementById('evaluateButton2');
+            assert.isFalse(evaluateButton2.disabled)
+        });
+
+    })
+
 })
