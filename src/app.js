@@ -82,13 +82,13 @@ function getRandomIntInclusive(min, max) {
 function printScore() {
     for (i = 0; i < numberOfStudentsInput.value; i++) {
         let score = getRandomIntInclusive(0, 100);
-        let tr = table.rows[i + 1]; // Second row
+        let tr = table.rows[i + 1]; // Starting on second row
         let cell = tr.cells[2]; // Third column
 
         if (score <= 49) {
             cell.innerHTML = score + " <img src='src/img/red_cross.png' width='25'>";
         } else {
-            cell.innerHTML = score + " <img src='src/img/check.png' width='25'>";
+            cell.innerHTML = score + " <img src='src/img/green_check.png' width='25'>";
         }
     }
 }
@@ -115,6 +115,4 @@ function addRowToStudentsTable(i) {
 
     cell1.innerHTML = i; // Number
     cell2.innerHTML = "Elvis Presley";
-    cell3.innerHTML = "";
-    cell4.innerHTML = "";
 }
