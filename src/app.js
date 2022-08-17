@@ -113,7 +113,8 @@ function addRowToStudentsTable(i) {
     let cell1 = row.insertCell(0);
     let cell2 = row.insertCell(1);
     row.insertCell(2);
-    row.insertCell(3);
+    // TODO: until proper task to be done
+    // row.insertCell(3);
 
     cell1.innerHTML = i; // Number
     cell2.innerHTML = "Elvis Presley";
@@ -153,9 +154,9 @@ function askForConfirmationMessage() {
 
 function confirmationMessage () {
     let text = "Evaluations properly sent!";
-    (alert (text));
+    alert (text);
     location.reload(); // Page reloads after clicking on OK
-}
+};
 
 class Student {
     constructor(id, name) {

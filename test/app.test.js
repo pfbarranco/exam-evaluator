@@ -129,7 +129,7 @@ describe('Main page test', () => {
             let evaluateButton2 = document.getElementById('evaluateButton2')
             assert.isTrue(evaluateButton2.disabled)
         });
-        it("Evaluate button 1 is enable after clicking on OK", () => {
+        it("Evaluate button 1 is enabled after clicking on OK", () => {
             let app = require("../src/app");
             let studentsOkButton = document.getElementById('studentsButton');
 
@@ -139,7 +139,7 @@ describe('Main page test', () => {
             let evaluateButton1 = document.getElementById('evaluateButton1');
             assert.isFalse(evaluateButton1.disabled)
         });
-        it("Evaluate button 2 is enable after clicking on OK", () => {
+        it("Evaluate button 2 is enabled after clicking on OK", () => {
             let app = require("../src/app");
             let studentsOkButton = document.getElementById('studentsButton');
 
@@ -151,5 +151,24 @@ describe('Main page test', () => {
         });
 
     })
+    describe("Send button tests", () => {
+        it("Send button is disabled by default", () => {
+            let app = require("../src/app");
+            let sendButton = document.getElementById('sendButton')
+            assert.isTrue(sendButton.disabled)
+        })
+        it("Send button is enabled after clicking on Evaluate", () => {
+            let app = require("../src/app");
+            let evaluateButton1 = document.getElementById('evaluateButton1');
+            let evaluateButton2 = document.getElementById("evaluateButton2");
 
+            var eventDispatched = evaluateButton1.dispatchEvent(new Event('click'))
+            assert.isTrue(eventDispatched);
+            var eventDispatched = evaluateButton2.dispatchEvent(new Event('click'))
+            assert.isTrue(eventDispatched);
+
+            let sendButton = document.getElementById('sendButton');
+            assert.isFalse(sendButton.disabled)
+        });
+    })
 })
