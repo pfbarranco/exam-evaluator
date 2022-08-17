@@ -11,7 +11,7 @@ buttonOk.addEventListener("click", function () {
     clearAndCompleteTable();
     evaluateButton1.disabled = false;
     evaluateButton2.disabled = false;
-})
+});
 
 /* Number of students form.
 Enter key does the same functions as click on OK button */
@@ -24,7 +24,7 @@ numberOfStudentsForm.addEventListener("keypress", function () {
         evaluateButton1.disabled = false;
         evaluateButton2.disabled = false;
     }
-})
+});
 
 /* Evaluate button */
 
@@ -40,10 +40,10 @@ evaluateButton2.disabled = true;
 
 evaluateButton1.addEventListener("click", function () {
     printScore();
-})
+});
 evaluateButton2.addEventListener("click", function () {
     printScore();
-})
+});
 
 /*Number of students input */
 
@@ -67,7 +67,7 @@ numberOfStudentsInput.addEventListener("input", function () {
         numberOfStudentsInput.setCustomValidity("Number must be between 1 and 30.");
         numberOfStudentsInput.reportValidity();
     }
-})
+});
 
 /* Table*/
 
@@ -79,7 +79,7 @@ function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min);
-}
+};
 function printScore() {
     for (i = 0; i < numberOfStudentsInput.value; i++) {
         let score = getRandomIntInclusive(0, 100);
@@ -93,7 +93,7 @@ function printScore() {
         }
         // update student score
     }
-}
+};
 
 /* Clear table and add new rows depending on the input number */
 
@@ -104,7 +104,7 @@ function clearAndCompleteTable() {
     for (let i = 1; i <= numberOfStudentsInput.value; i++) {
         addRowToStudentsTable(i);
     }
-}
+};
 
 /* Add rows to students table depending on the input number */
 
@@ -118,12 +118,12 @@ function addRowToStudentsTable(i) {
     cell1.innerHTML = i; // Number
     cell2.innerHTML = "Elvis Presley";
     let student = new Student(i, "Elvis Presley");
-    students.push (student);
-}
+    students.push(student);
+};
 
 /* Send button*/
 
-let sendButton = document.getElementById ("sendButton");
+let sendButton = document.getElementById("sendButton");
 
 /* Send button is disabled by default */
 
@@ -141,22 +141,28 @@ evaluateButton2.addEventListener("click", function () {
 /* Confirmation message pops up after clicking on send button */
 
 sendButton.addEventListener("click", function () {
-   confirmationMessage (); 
+    askForConfirmationMessage();
 });
+
+function askForConfirmationMessage() {
+    let text = "Do you really want to send your evaluations?";
+    if (confirm(text) == true) {
+        confirmationMessage ();
+    }
+};
 
 function confirmationMessage () {
     let text = "Evaluations properly sent!";
-  if (confirm(text) == true) {
-    location.reload();
-  }
+    (alert (text));
+    location.reload(); // Page reloads after clicking on OK
 }
 
 class Student {
-    constructor (id, name){
-        this.id=id;
-        this.name=name;
+    constructor(id, name) {
+        this.id = id;
+        this.name = name;
     }
     //score;
-}
+};
 
 let students = [];
