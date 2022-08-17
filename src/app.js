@@ -57,6 +57,7 @@ numberOfStudentsInput.addEventListener("input", function () {
 
     evaluateButton1.disabled = true;
     evaluateButton2.disabled = true;
+    sendButton.disabled = true;
 
     if (numberOfStudentsInput.value <= 30 && numberOfStudentsInput.value >= 1) {
         buttonOk.disabled = false;
@@ -121,7 +122,34 @@ function addRowToStudentsTable(i) {
 }
 
 /* Send button*/
-/* Disable and enable send button */
+
+let sendButton = document.getElementById ("sendButton");
+
+/* Send button is disabled by default */
+
+sendButton.disabled = true;
+
+/* Send button is enabled after clicking on evaluate buttons */
+
+evaluateButton1.addEventListener("click", function () {
+    sendButton.disabled = false;
+});
+evaluateButton2.addEventListener("click", function () {
+    sendButton.disabled = false;
+});
+
+/* Confirmation message pops up after clicking on send button */
+
+sendButton.addEventListener("click", function () {
+   confirmationMessage (); 
+});
+
+function confirmationMessage () {
+    let text = "Evaluations properly sent!";
+  if (confirm(text) == true) {
+    location.reload();
+  }
+}
 
 class Student {
     constructor (id, name){
