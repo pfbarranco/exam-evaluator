@@ -1,4 +1,5 @@
 var assert = require("chai").assert;
+var rewire = require("rewire");
 const { expect } = require('chai');
 const chai = require('chai');
 const { JSDOM } = require('jsdom');
@@ -170,5 +171,67 @@ describe('Main page test', () => {
             let sendButton = document.getElementById('sendButton');
             assert.isFalse(sendButton.disabled)
         });
+    })
+
+    describe("Functionality of array", () => {
+        it("Array is empty by default", () => {
+            let app = rewire("../src/app");
+            let students = app.__get__('students');
+            assert.isTrue(students.length === 0);
+        })
+        it("Array completes after clicking OK", () => {
+            let app = rewire("../src/app");
+            let numberOfStudentsInput = document.getElementById("numberOfStudentsInput");
+
+            numberOfStudentsInput.value = 5;
+            var eventDispatched = numberOfStudentsInput.dispatchEvent(new Event('input'))
+            assert.isTrue(eventDispatched);
+
+            let studentsOkButton = document.getElementById('studentsButton');
+            var eventDispatched = studentsOkButton.dispatchEvent(new Event('click'))
+            assert.isTrue(eventDispatched);
+
+            let students = app.__get__('students');
+            assert.equal(students.length, Number.parseInt(numberOfStudentsInput.value));
+        })
+        it("Id and name are not null", () => {
+            let app = rewire("../src/app");
+
+            let numberOfStudentsInput = document.getElementById("numberOfStudentsInput");
+            numberOfStudentsInput.value = 5;
+            var eventDispatched = numberOfStudentsInput.dispatchEvent(new Event('input'))
+            assert.isTrue(eventDispatched);
+
+            let studentsOkButton = document.getElementById('studentsButton');
+            var eventDispatched = studentsOkButton.dispatchEvent(new Event('click'))
+            assert.isTrue(eventDispatched);
+
+            let students = app.__get__('students');
+            assert.isNotNull(students[0].id);
+            assert.isNotNull(students[0].name);
+            assert.isUndefined(students[0].score);
+        })
+        it("Score is not undefined after clicking on Evaluate", () => {
+            let app = rewire("../src/app");
+
+            let numberOfStudentsInput = document.getElementById("numberOfStudentsInput");
+            numberOfStudentsInput.value = 5;
+            var eventDispatched = numberOfStudentsInput.dispatchEvent(new Event('input'))
+            assert.isTrue(eventDispatched);
+
+            let studentsOkButton = document.getElementById('studentsButton');
+            var eventDispatched = studentsOkButton.dispatchEvent(new Event('click'))
+            assert.isTrue(eventDispatched);
+
+            let evaluateButton1 = document.getElementById('evaluateButton1');
+
+            var eventDispatched = evaluateButton1.dispatchEvent(new Event('click'))
+            assert.isTrue(eventDispatched);
+
+            let students = app.__get__('students');
+            assert.isNotNull(students[0].id);
+            assert.isNotNull(students[0].name);
+            assert.typeOf(students[0].score, "number");
+        })
     })
 })

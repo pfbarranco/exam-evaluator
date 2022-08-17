@@ -91,7 +91,7 @@ function printScore() {
         } else {
             cell.innerHTML = score + " <img src='src/img/green_check.png' width='25'>";
         }
-        // update student score
+        students[i].score = score; // update student score
     }
 };
 
@@ -101,6 +101,7 @@ function clearAndCompleteTable() {
     for (let i = 1; i < table.rows.length;) {
         table.deleteRow(i);
     }
+    students = []; // clear array
     for (let i = 1; i <= numberOfStudentsInput.value; i++) {
         addRowToStudentsTable(i);
     }
@@ -148,13 +149,13 @@ sendButton.addEventListener("click", function () {
 function askForConfirmationMessage() {
     let text = "Do you really want to send your evaluations?";
     if (confirm(text) == true) {
-        confirmationMessage ();
+        confirmationMessage();
     }
 };
 
-function confirmationMessage () {
+function confirmationMessage() {
     let text = "Evaluations properly sent!";
-    alert (text);
+    alert(text);
     location.reload(); // Page reloads after clicking on OK
 };
 
@@ -163,7 +164,7 @@ class Student {
         this.id = id;
         this.name = name;
     }
-    //score;
+    score;
 };
 
 let students = [];
