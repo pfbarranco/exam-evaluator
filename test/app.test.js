@@ -161,11 +161,8 @@ describe('Main page test', () => {
         it("Send button is enabled after clicking on Evaluate", () => {
             let app = require("../src/app");
             let evaluateButton1 = document.getElementById('evaluateButton1');
-            let evaluateButton2 = document.getElementById("evaluateButton2");
 
             var eventDispatched = evaluateButton1.dispatchEvent(new Event('click'))
-            assert.isTrue(eventDispatched);
-            var eventDispatched = evaluateButton2.dispatchEvent(new Event('click'))
             assert.isTrue(eventDispatched);
 
             let sendButton = document.getElementById('sendButton');

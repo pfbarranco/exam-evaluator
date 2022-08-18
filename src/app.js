@@ -40,9 +40,11 @@ evaluateButton2.disabled = true;
 
 evaluateButton1.addEventListener("click", function () {
     printScore();
+    sendButton.disabled = false;
 });
 evaluateButton2.addEventListener("click", function () {
     printScore();
+    sendButton.disabled = false;
 });
 
 /*Number of students input */
@@ -131,15 +133,6 @@ let sendButton = document.getElementById("sendButton");
 
 sendButton.disabled = true;
 
-/* Send button is enabled after clicking on evaluate buttons */
-
-evaluateButton1.addEventListener("click", function () {
-    sendButton.disabled = false;
-});
-evaluateButton2.addEventListener("click", function () {
-    sendButton.disabled = false;
-});
-
 /* Confirmation message pops up after clicking on send button */
 
 sendButton.addEventListener("click", function () {
@@ -147,14 +140,14 @@ sendButton.addEventListener("click", function () {
 });
 
 function askForConfirmationMessage() {
-    let text = "Do you really want to send your evaluations?";
+    const text = "Do you really want to send your evaluations?";
     if (confirm(text) == true) {
         confirmationMessage();
     }
 };
 
 function confirmationMessage() {
-    let text = "Evaluations properly sent!";
+    const text = "Evaluations properly sent!";
     alert(text);
     location.reload(); // Page reloads after clicking on OK
 };
