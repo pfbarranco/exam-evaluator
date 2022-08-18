@@ -20,7 +20,8 @@
   "dependencies": {
     "@web/dev-server": "^0.1.32",
     "bootstrap": "^5.2.0",
-    "chai-dom": "^1.11.0"
+    "chai-dom": "^1.11.0",
+    "rewire": "^6.0.0"
   },
   "devDependencies": {
     "jsdom": "20.0.0",
