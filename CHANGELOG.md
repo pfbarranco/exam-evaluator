@@ -6,4 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] [1.0.0]
 
-- Create the initial layout with title and students form.
+- Create the initial layout with title and students form
+- Create JS basic functionality
+- Create and implement evaluate button
+- Create and implement send evaluations button
+- Enable GitHub pages
