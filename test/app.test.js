@@ -6,6 +6,8 @@ const { JSDOM } = require('jsdom');
 chai.use(require('chai-dom'));
 require('jsdom-global')();
 
+//TODO: fix tests ue to fetch API problem
+
 describe('Main page test', () => {
     beforeEach((done) => {
         JSDOM.fromFile('index.html')
