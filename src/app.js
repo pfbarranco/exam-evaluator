@@ -1,6 +1,17 @@
 /* OK BUTTON
 OK button is disabled by default */
 
+async function retrieveNames(numberOfStudents) {
+    let students = []
+    for (let index = 0; index < numberOfStudents; index++) {
+        students.push("Carlos")
+    }
+    return students;
+// fetch('https://random-data-api.com/api/name/random_name?size=3')
+//     .then(response => response.json())
+//     .then(data => console.log(data));
+}
+
 let buttonOk = document.getElementById("studentsButton");
 
 buttonOk.disabled = true;
@@ -104,14 +115,19 @@ function clearAndCompleteTable() {
         table.deleteRow(i);
     }
     students = []; // clear array
-    for (let i = 1; i <= numberOfStudentsInput.value; i++) {
-        addRowToStudentsTable(i);
-    }
+    retrieveNames(numberOfStudentsInput.value)
+        .then(names => {
+            for (let i = 0; i < names.length; i++) {
+                let name = names[i];
+                addRowToStudentsTable(i + 1, name);
+            }
+        })
+
 };
 
 /* Add rows to students table depending on the input number */
 
-function addRowToStudentsTable(i) {
+function addRowToStudentsTable(i, name) {
     let row = table.insertRow(i);
     let cell1 = row.insertCell(0);
     let cell2 = row.insertCell(1);
@@ -120,9 +136,9 @@ function addRowToStudentsTable(i) {
     // row.insertCell(3);
 
     cell1.innerHTML = i; // Number
-    cell2.innerHTML = "Elvis Presley";
-    let student = new Student(i, "Elvis Presley");
-    students.push(student);
+    cell2.innerHTML = name;
+    let student = new Student(i, name);
+    students.push(student); //Add student to the array
 };
 
 /* Send button*/
@@ -152,6 +168,7 @@ function confirmationMessage() {
     location.reload(); // Page reloads after clicking on OK
 };
 
+/* Array of students ready to be sent */
 class Student {
     constructor(id, name) {
         this.id = id;

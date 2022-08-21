@@ -2,7 +2,7 @@
   "name": "student-evaluator",
   "version": "1.0.0",
   "description": "Student evaluator for lazy teachers",
-  "main": "index.js",
+  "main": "src/app.js",
   "scripts": {
     "test": "node node_modules/mocha/bin/mocha",
     "start": "web-dev-server --node-resolve --open --watch"
