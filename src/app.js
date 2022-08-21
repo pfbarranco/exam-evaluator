@@ -2,14 +2,20 @@
 OK button is disabled by default */
 
 async function retrieveNames(numberOfStudents) {
-    let students = []
-    for (let index = 0; index < numberOfStudents; index++) {
-        students.push("Carlos")
-    }
-    return students;
-// fetch('https://random-data-api.com/api/name/random_name?size=3')
-//     .then(response => response.json())
-//     .then(data => console.log(data));
+    return fetch('https://random-data-api.com/api/name/random_name?size=' + numberOfStudents)
+        .then(response => response.json())
+        // Functional way of iterate the array
+        .then(data =>
+            data.map(element => element.name)
+        )
+        // Another way of iterating the array (non functional)
+        // .then(data => {
+        //     let students = [];
+        //     for (const element of data) {
+        //         students.push(element.name);
+        //     }
+        //   return students;
+        // })
 }
 
 let buttonOk = document.getElementById("studentsButton");
