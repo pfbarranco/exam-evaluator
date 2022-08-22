@@ -11,3 +11,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Create and implement evaluate button
 - Create and implement send evaluations button
 - Enable GitHub pages
+- Retrieve names from API call

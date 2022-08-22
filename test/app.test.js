@@ -5,6 +5,15 @@ const chai = require('chai');
 const { JSDOM } = require('jsdom');
 chai.use(require('chai-dom'));
 require('jsdom-global')();
+const fetchMock = require('fetch-mock');
+
+//TODO: find a way to retrieve these Jsons from files
+const names1Json = '[{"name": "Armand Hammer"}]'
+const names3Json = '[{"name": "Armand Hammer"},{"name": "Doug Graves"},{"name": "Tamara Knight"}]'
+const names5Json = '[{"name": "Armand Hammer"},{"name": "Doug Graves"},{"name": "Tamara Knight"},{"name": "Armand Hammer"},{"name": "Doug Graves"}]'
+const names10Json = '[{"name": "Armand Hammer"},{"name": "Doug Graves"},{"name": "Tamara Knight"},{"name": "Armand Hammer"},{"name": "Doug Graves"},{"name": "Tamara Knight"},{"name": "Armand Hammer"},{"name": "Doug Graves"},{"name": "Tamara Knight"},{"name": "Armand Hammer"}]'
+const names30Json = '[{"name": "Armand Hammer"},{"name": "Doug Graves"},{"name": "Tamara Knight"},{"name": "Armand Hammer"},{"name": "Doug Graves"},{"name": "Tamara Knight"},{"name": "Armand Hammer"},{"name": "Doug Graves"},{"name": "Tamara Knight"},{"name": "Armand Hammer"},{"name": "Doug Graves"},{"name": "Tamara Knight"},{"name": "Armand Hammer"},{"name": "Doug Graves"},{"name": "Tamara Knight"},{"name": "Armand Hammer"},{"name": "Doug Graves"},{"name": "Tamara Knight"},{"name": "Armand Hammer"},{"name": "Doug Graves"},{"name": "Tamara Knight"},{"name": "Armand Hammer"},{"name": "Doug Graves"},{"name": "Tamara Knight"},{"name": "Armand Hammer"},{"name": "Doug Graves"},{"name": "Tamara Knight"},{"name": "Armand Hammer"},{"name": "Doug Graves"},{"name": "Tamara Knight"}]'
+
 
 describe('Main page test', () => {
     beforeEach((done) => {
@@ -17,6 +26,18 @@ describe('Main page test', () => {
 
     afterEach(() => {
         delete require.cache[require.resolve('../src/app')];
+    });
+
+    before(function () {
+        fetchMock.get('https://random-data-api.com/api/name/random_name?size=1', names1Json);
+        fetchMock.get('https://random-data-api.com/api/name/random_name?size=3', names3Json);
+        fetchMock.get('https://random-data-api.com/api/name/random_name?size=5', names5Json);
+        fetchMock.get('https://random-data-api.com/api/name/random_name?size=10', names10Json);
+        fetchMock.get('https://random-data-api.com/api/name/random_name?size=30', names30Json);
+    });
+
+    after(function () {
+        fetchMock.restore();
     });
 
     describe("Ok button tests", () => {
@@ -84,7 +105,7 @@ describe('Main page test', () => {
             assert.equal(studentsTable.rows.length, 1)
         })
 
-        it("Number input + 1 (header) is equal to number of rows", () => {
+        it("Number input + 1 (header) is equal to number of rows", async function () {
             let app = require("../src/app")
             let studentsTable = document.getElementById("studentsTable")
             let numberOfStudentsInput = document.getElementById("numberOfStudentsInput")
@@ -94,10 +115,13 @@ describe('Main page test', () => {
             let studentsButton = document.getElementById('studentsButton');
             studentsButton.click()
 
+            //TODO: find a more elegant way to ensure promise is executed
+            await wait(1000);
+
             assert.equal(studentsTable.rows.length, Number.parseInt(numberOfStudentsInput.value) + 1)
         })
 
-        it("Check if the table cleans when entering a new number after another one ", () => {
+        it("Check if the table cleans when entering a new number after another one ", async function () {
             let app = require("../src/app")
             let studentsTable = document.getElementById("studentsTable")
             let numberOfStudentsInput = document.getElementById("numberOfStudentsInput")
@@ -107,12 +131,18 @@ describe('Main page test', () => {
             let studentsButton = document.getElementById('studentsButton');
             studentsButton.click()
 
+            //TODO: find a more elegant way to ensure promise is executed
+            await wait(400);
+
             assert.equal(studentsTable.rows.length, Number.parseInt(numberOfStudentsInput.value) + 1)
 
             numberOfStudentsInput.value = 10
             var eventDispatched = numberOfStudentsInput.dispatchEvent(new Event('input'))
             assert.isTrue(eventDispatched)
             studentsButton.click()
+
+            //TODO: find a more elegant way to ensure promise is executed
+            await wait(400)
 
             assert.equal(studentsTable.rows.length, Number.parseInt(numberOfStudentsInput.value) + 1)
         })
@@ -176,7 +206,7 @@ describe('Main page test', () => {
             let students = app.__get__('students');
             assert.isTrue(students.length === 0);
         })
-        it("Array completes after clicking OK", () => {
+        it("Array completes after clicking OK", async function () {
             let app = rewire("../src/app");
             let numberOfStudentsInput = document.getElementById("numberOfStudentsInput");
 
@@ -185,13 +215,16 @@ describe('Main page test', () => {
             assert.isTrue(eventDispatched);
 
             let studentsOkButton = document.getElementById('studentsButton');
-            var eventDispatched = studentsOkButton.dispatchEvent(new Event('click'))
+            var eventDispatched = studentsOkButton.dispatchEvent(new Event('click'));
+            
+            //TODO: find a more elegant way to ensure promise is executed
+            await wait(400);
             assert.isTrue(eventDispatched);
 
             let students = app.__get__('students');
             assert.equal(students.length, Number.parseInt(numberOfStudentsInput.value));
         })
-        it("Id and name are not null", () => {
+        it("Id and name are not null", async function() {
             let app = rewire("../src/app");
 
             let numberOfStudentsInput = document.getElementById("numberOfStudentsInput");
@@ -202,13 +235,16 @@ describe('Main page test', () => {
             let studentsOkButton = document.getElementById('studentsButton');
             var eventDispatched = studentsOkButton.dispatchEvent(new Event('click'))
             assert.isTrue(eventDispatched);
+
+            //TODO: find a more elegant way to ensure promise is executed
+            await wait(400);
 
             let students = app.__get__('students');
             assert.isNotNull(students[0].id);
             assert.isNotNull(students[0].name);
             assert.isUndefined(students[0].score);
         })
-        it("Score is not undefined after clicking on Evaluate", () => {
+        it("Score is not undefined after clicking on Evaluate", async function () {
             let app = rewire("../src/app");
 
             let numberOfStudentsInput = document.getElementById("numberOfStudentsInput");
@@ -219,6 +255,9 @@ describe('Main page test', () => {
             let studentsOkButton = document.getElementById('studentsButton');
             var eventDispatched = studentsOkButton.dispatchEvent(new Event('click'))
             assert.isTrue(eventDispatched);
+
+            //TODO: find a more elegant way to ensure promise is executed
+            await wait(400);
 
             let evaluateButton1 = document.getElementById('evaluateButton1');
 
@@ -232,3 +271,11 @@ describe('Main page test', () => {
         })
     })
 })
+
+function wait(miliseconds) {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve();
+        }, miliseconds);
+    })
+}
